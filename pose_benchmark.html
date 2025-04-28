@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Pose optimization for autonomous driving datasets using neural rendering models.">
+  <meta name="keywords" content="Autonomous Driving, Pose Optimization, Neural Rendering">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pose optimization for driving datasets</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./packages/definitive-image-comparison-slider-master/src/dics.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./packages/definitive-image-comparison-slider-master/src/dics.js"></script>
+  <script src="./packages/csv-to-html-table-master/js/jquery.csv.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="./packages/csv-to-html-table-master/js/csv_to_html_table.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', domReady);
+
+    function domReady() {
+
+      var b = document.querySelectorAll('.b-dics');
+      b.forEach(element =>
+        new Dics({
+          container: element,
+          textPosition: 'top'
+        })
+      );
+    } 
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="./index.html">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Benchmarks
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="./pose_benchmark.html">
+            Pose Optimization
+          </a>
+          <a class="navbar-item" href="./nvs_benchmark.html">
+            Novel View Synthesis
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://qherau.github.io/MOISST/">
+            MOISST
+          </a>
+          <a class="navbar-item" href="https://qherau.github.io/SOAC/">
+            SOAC
+          </a>
+          <a class="navbar-item" href="https://qherau.github.io/3DGS-Calib/">
+            3DGS-Calib
+          </a>
+		  <a class="navbar-item" href="https://hala-djeghim.github.io/ViiNeuS/">
+            ViiNeuS
+          </a>
+		  <a class="navbar-item" href="https://ntaquan0125.github.io/rodus/">
+            RoDUS
+          </a>
+		  <a class="navbar-item" href="https://arxiv.org/abs/2403.10427">
+            SWAG
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Pose optimization for autonomous driving datasets using neural rendering models</h1>
+          <h2 class="subtitle is-4" style="margin-top:1rem">arXiv 2025</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen has-text-centered">
+    <h2 class="title is-3">Pose Optimization Benchmark</h2>
+    <div class="content has-text-justified">
+      <ul>
+        <li>The evaluation is done with the poses from different pose optimization methods.</li>
+        <li>The evaluation metrics are from 3 categories to avoid any bias. </li>
+        <li>Novel View Synthesis: Nerfacto with LiDAR depth maps and Splatfacto with SfM+LiDAR initialization.</li>
+        <li>Structure-from-Motion: COLMAP reprojection error and track length.</li>
+        <li>Geometric consistency: Precision with the percentage of LiDAR points under 15cm of distance with the Delauney mesh, and average distance.</li>
+		<li>The results for each dataset are the average values over 5 selected sequences.</li>
+      </ul>
+      
+      
+    </div>
+
+
+    <h3 class="title is-4">KITTI-360</h2>
+    <div class="content has-text-justified">
+      <div id="table-kitti360"></div>
+    </div>
+    <h3 class="title is-4">Waymo</h2>
+    <div class="content has-text-justified">
+      <div id="table-waymo"></div>
+    </div>
+    <h3 class="title is-4">NuScenes</h2>
+    <div class="content has-text-justified">
+      <div id="table-nuscenes"></div>
+    </div>
+    <h3 class="title is-4">PandaSet</h2>
+    <div class="content has-text-justified">
+      <div id="table-pandaset"></div>
+    </div>
+
+    <script>
+      function format_link(link) {
+          if (link)
+              return '<div style="background-color: red">link</div>';
+          else return "";
+      }
+
+
+      CsvToHtmlTable.init({
+          csv_path: "data/KITTI-360_pose.csv",
+          element: "table-kitti360",
+          allow_download: false,
+          csv_options: {
+              separator: ",",
+              delimiter: '"'
+          },
+          datatables_options: {
+              paging: false,
+              searching: false,
+              info: false,
+          },
+          custom_formatting: [
+          ]
+      });
+      CsvToHtmlTable.init({
+          csv_path: "data/Waymo_pose.csv",
+          element: "table-waymo",
+          allow_download: false,
+          csv_options: {
+              separator: ",",
+              delimiter: '"'
+          },
+          datatables_options: {
+              paging: false,
+              searching: false,
+              info: false,
+          },
+          custom_formatting: [
+          ]
+      });
+      CsvToHtmlTable.init({
+          csv_path: "data/NuScenes_pose.csv",
+          element: "table-nuscenes",
+          allow_download: false,
+          csv_options: {
+              separator: ",",
+              delimiter: '"'
+          },
+          datatables_options: {
+              paging: false,
+              searching: false,
+              info: false,
+          },
+          custom_formatting: [
+          ]
+      });
+      CsvToHtmlTable.init({
+          csv_path: "data/PandaSet_pose.csv",
+          element: "table-pandaset",
+          allow_download: false,
+          csv_options: {
+              separator: ",",
+              delimiter: '"'
+          },
+          datatables_options: {
+              paging: false,
+              searching: false,
+              info: false,
+          },
+          custom_formatting: [
+          ]
+      });
+    </script>
+  
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="content">
+        <p>
+          We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the website template.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

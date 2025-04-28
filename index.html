@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Pose Optimization for Autonomous Driving Datasets using Neural Rendering Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
+	<meta property="og:title" content="Pose Optimization for Autonomous Driving Datasets using Neural Rendering Models" />
+	<meta property="og:description" content="Autonomous driving systems rely on accurate perception and localization of the ego car to 
+	ensure safety and reliability in challenging real-world driving scenarios. Public datasets play a vital role in benchmarking and 
+	guiding advancement in research by providing standardized resources for model development and evaluation. However, potential inaccuracies 
+	in sensor calibration and vehicle poses within these datasets can lead to erroneous evaluations of downstream tasks, adversely impacting 
+	the reliability and performance of the autonomous systems. To address this challenge, we propose a robust optimization method based on 
+	Neural Radiance Fields (NeRF) to refine sensor poses and calibration parameters, enhancing the integrity of dataset benchmarks. 
+	To validate improvement in accuracy of our optimized poses without ground truth, we present a thorough evaluation process, 
+	relying on reprojection metrics, Novel View Synthesis rendering quality, and geometric alignment. We demonstrate that our method achieves 
+	significant improvements in sensor pose accuracy. By optimizing these critical parameters, our approach not only improves the utility of 
+	existing datasets but also paves the way for more reliable autonomous driving models. 
+	To foster continued progress in this field, we make the optimized sensor poses publicly available, providing a valuable resource 
+	for the research community." />
+	<meta name="description" content="Autonomous driving systems rely on accurate perception and localization of the ego car to 
+	ensure safety and reliability in challenging real-world driving scenarios. Public datasets play a vital role in benchmarking and 
+	guiding advancement in research by providing standardized resources for model development and evaluation. However, potential inaccuracies 
+	in sensor calibration and vehicle poses within these datasets can lead to erroneous evaluations of downstream tasks, adversely impacting 
+	the reliability and performance of the autonomous systems. To address this challenge, we propose a robust optimization method based on 
+	Neural Radiance Fields (NeRF) to refine sensor poses and calibration parameters, enhancing the integrity of dataset benchmarks. 
+	To validate improvement in accuracy of our optimized poses without ground truth, we present a thorough evaluation process, 
+	relying on reprojection metrics, Novel View Synthesis rendering quality, and geometric alignment. We demonstrate that our method achieves 
+	significant improvements in sensor pose accuracy. By optimizing these critical parameters, our approach not only improves the utility of 
+	existing datasets but also paves the way for more reliable autonomous driving models. 
+	To foster continued progress in this field, we make the optimized sensor poses publicly available, providing a valuable resource 
+	for the research community.">
+ 	<meta name="keywords" content="calibration, multimodal, spatiotemporal, lidar, camera, nerf, neural radiance field, targetless, automatic, datasets, autonomous, driving, optimization, evaluation, benchmark">	
+	
+	
+  <title>Pose Optimization for Autonomous Driving Datasets using Neural Rendering Models</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./packages/definitive-image-comparison-slider-master/src/dics.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+  crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./packages/definitive-image-comparison-slider-master/src/dics.js"></script>
+  <script src="./packages/csv-to-html-table-master/js/jquery.csv.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+  <script src="./packages/csv-to-html-table-master/js/csv_to_html_table.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
+
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', domReady);
+
+    function domReady() {
+
+      var b = document.querySelectorAll('.b-dics');
+      b.forEach(element =>
+        new Dics({
+          container: element,
+          textPosition: 'top'
+        })
+      );
+    } 
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="./index.html">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Benchmarks
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="./pose_benchmark.html">
+            Pose Optimization
+          </a>
+          <a class="navbar-item" href="./nvs_benchmark.html">
+            Novel View Synthesis
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://qherau.github.io/MOISST/">
+            MOISST
+          </a>
+          <a class="navbar-item" href="https://qherau.github.io/SOAC/">
+            SOAC
+          </a>
+          <a class="navbar-item" href="https://qherau.github.io/3DGS-Calib/">
+            3DGS-Calib
+          </a>
+		  <a class="navbar-item" href="https://hala-djeghim.github.io/ViiNeuS/">
+            ViiNeuS
+          </a>
+		  <a class="navbar-item" href="https://ntaquan0125.github.io/rodus/">
+            RoDUS
+          </a>
+		  <a class="navbar-item" href="https://arxiv.org/abs/2403.10427">
+            SWAG
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Pose optimization for autonomous driving datasets using neural rendering models</h1>
+          <h2 class="subtitle is-4" style="margin-top:1rem">arXiv 2025</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=dxHTZAkAAAAJ&hl=en">Quentin Herau</a><sup>1,2</sup>,</span>
+			  <a href="https://scholar.google.com/citations?hl=en&user=S3zYmOYAAAAJ">Nathan Piasco</a><sup>1</sup>,</span>
+			  <a href="https://scholar.google.com/citations?hl=en&user=0jLPiLYAAAAJ">Moussab Bennehar</a><sup>1</sup>,</span>
+			  <a href="https://scholar.google.com/citations?hl=en&user=bRgp2lUAAAAJ">Luis Rold&atilde;o</a><sup>1</sup>,</span>
+			  <a href="https://scholar.google.com/citations?hl=en&user=fjUPMcYAAAAJ">Dzmitry Tsishkou</a><sup>1</sup>,</span>
+			  <a href="https://scholar.google.com/citations?user=-rCulKwAAAAJ&hl=en&oi=ao">Bingbing Liu</a><sup>1</sup>,</span>
+			  <a href="https://imvia.ube.fr/membres/migniot-cyrille/">Cyrille Migniot</a><sup>3</sup>,</span>
+			  <a href="https://www.mis.u-picardie.fr/index.php/membre/93/Pascal-VASSEUR">Pascal Vasseur</a><sup>4</sup>,</span>
+			  <a href="https://sites.google.com/view/cedricdemonceaux/home">C&#233;dric Demonceaux</a><sup>2</sup>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>Noah's Ark Lab, Huawei Technologies</span><br>
+            <span class="author-block"><sup>2</sup>ICB UMR CNRS 6303, Universit&#233; de Bourgogne Europe, France </span>
+			<span class="author-block"><sup>3</sup>ImVIA UR 7535, Universit&#233; de Bourgogne Europe, France</span>
+            <span class="author-block"><sup>4</sup>MIS UR 4290, Universit&#233; de Picardie Jules Verne, France</span>
+
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2504.15776"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Dataset Link. -->
+                  </a>
+              <!-- Benchmarks Links. -->
+              <span class="link-block">
+                <a href="./pose_benchmark.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-search"></i>
+                  </span>
+                  <span>PO Benchmark</span>
+                  </a>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="./nvs_benchmark.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-search"></i>
+                  </span>
+                  <span>NVS Benchmark</span>
+                  </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Autonomous driving systems rely on accurate perception and localization of the ego car to ensure safety and reliability 
+		  in challenging real-world  driving scenarios. Public datasets play a vital role in benchmarking and guiding advancement 
+		  in research by providing standardized resources for model development and evaluation. However, potential inaccuracies in 
+		  sensor calibration and vehicle poses within these datasets can lead to erroneous evaluations of downstream tasks, adversely 
+		  impacting the reliability and performance of the autonomous systems. To address this challenge, we propose a robust 
+		  optimization method based on Neural Radiance Fields (NeRF) to refine sensor poses and calibration parameters, enhancing 
+		  the integrity of dataset benchmarks. 
+		  To validate improvement in accuracy of our optimized poses without ground truth, we present a thorough evaluation process, 
+		  relying on reprojection metrics, Novel View Synthesis rendering quality, and geometric alignment.
+		  We demonstrate that our method achieves significant improvements in sensor pose accuracy. 
+		  By optimizing these critical parameters, our approach not only improves the utility of existing datasets but 
+		  also paves the way for more reliable autonomous driving models. To foster continued progress in this field, 
+		  we make the optimized sensor poses publicly available, providing a valuable resource for the research community. 
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop is-centered has-text-centered">
+    <div class="hero-body">
+      
+      <!-- Replace the iframe with your image -->
+      <img src="./static/images/teaser.jpg" alt="Teaser Image" style="max-width: 80%; height: auto;"/>
+
+      <p class="mt-4">
+        <b>Dataset pose improvement:</b>
+        Left, rendering comparison between original poses and optimized poses on Waymo open dataset (from left to right: normal map, depth map and RGB rendering). 
+        Right, the changes in metrics between the original poses (in blue) and the poses optimized with MOISST (in red) for each dataset, grouped in 3 categories: NVS, SfM, Geometric.
+      </p>
+      
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #f5f5f5;">
+  <div class="container is-max-widescreen has-text-centered">
+    <h2 class="title is-3">Qualitative Results</h2>
+
+    <div class="buttons is-centered mb-4">
+      <button class="button video-btn is-primary" onclick="changeVideo(this, './static/videos/nuscenes_comparison.mp4')">NuScenes</button>
+      <button class="button video-btn" onclick="changeVideo(this, './static/videos/pandaset_comparison.mp4')">PandaSet</button>
+      <button class="button video-btn" onclick="changeVideo(this, './static/videos/waymo_comparison.mp4')">Waymo</button>
+      <button class="button video-btn" onclick="changeVideo(this, './static/videos/kitti_comparison.mp4')">KITTI-360</button>
+    </div>
+
+    <div class="content">
+      <video id="qualitative" controls loop playsinline style="max-height: 600px; width: auto;">
+        <source id="videoSource" src="./static/videos/nuscenes_comparison.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small", id="carousel_test">
+  <div class="hero-body">
+    <div class="container is-max-widescreen has-text-centered">
+      <div id="results-carousel" class="carousel results-carousel">
+		<div class="item item-nuscenes1">
+            <img-comparison-slider>
+			  <img slot="first" src="./static/images/nuscenes_gt_1.png" />
+			  <img slot="second" src="./static/images/nuscenes_moisst_1.png" />
+			</img-comparison-slider>
+        </div>
+		<div class="item item-waymo1">
+            <img-comparison-slider>
+			  <img slot="first" src="./static/images/waymo_gt_1.png" />
+			  <img slot="second" src="./static/images/waymo_moisst_1.png" />
+			</img-comparison-slider>
+        </div>
+		<div class="item item-pandaset1">
+            <img-comparison-slider>
+			  <img slot="first" src="./static/images/pandaset_gt_1.png" />
+			  <img slot="second" src="./static/images/pandaset_moisst_1.png" />
+			</img-comparison-slider>
+        </div>
+		<div class="item item-pandaset2">
+            <img-comparison-slider>
+			  <img slot="first" src="./static/images/pandaset_gt_2.png" />
+			  <img slot="second" src="./static/images/pandaset_moisst_2.png" />
+			</img-comparison-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{herau2025pose,
+    title={Pose optimization},
+    author={Plop},
+    booktitle={ArXiv},
+    year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<script>
+  function changeVideo(button, videoSrc) {
+    const video = document.getElementById('qualitative');
+    const source = document.getElementById('videoSource');
+
+    source.src = videoSrc;
+    video.load();
+    video.play();
+
+    // Remove "is-primary" from all buttons
+    document.querySelectorAll('.video-btn').forEach(btn => {
+      btn.classList.remove('is-primary');
+    });
+
+    // Add "is-primary" to the clicked button
+    button.classList.add('is-primary');
+  }
+</script>
+<script>
+  const video = document.getElementById('qualitative');
+
+  // Show controls on hover
+  video.addEventListener('mouseenter', () => {
+    video.setAttribute('controls', '');
+  });
+
+  // Hide controls when mouse leaves
+  video.addEventListener('mouseleave', () => {
+    video.removeAttribute('controls');
+  });
+</script>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="content">
+        <p>
+          We thank <a
+            href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the website template.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+Method,Original PSNR,Original SSIM,Original LPIPS,HW PNSR,HW SSIM,HW LPIPS
+Nerfacto + LiDAR depth supervision,22.01,0.701,0.522,22.69,0.735,0.458
+Splatfacto + SfM & LiDAR init,23.42,0.771,0.33,24.6,0.813,0.285
+Nerfacto,21.9,0.69,0.524,22.57,0.724,0.466
+Splatfacto,23.74,0.775,0.318,24.8,0.815,0.28
+TensoRF,21.37,0.678,0.62,21.61,0.688,0.593

@@ -1,0 +1,9 @@
+@article{herau2026refining,
+  title = {Refining Ground Truth Poses in Autonomous Driving Datasets via Neural Rendering},
+  author = {Herau, Quentin and Piasco, Nathan and Bennehar, Moussab and Roldao, Luis and Tsishkou, Dzmitry and Liu, Bingbing and Migniot, Cyrille and Vasseur, Pascal and Demonceaux, C\'edric},
+  journal = {IEEE Robotics and Automation Letters},
+  year = {2026},
+  doi = {10.1109/LRA.2026.3732898},
+  eprint = {2504.15776},
+  archivePrefix = {arXiv}
+}

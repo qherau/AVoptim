@@ -1,0 +1,213 @@
+{
+  "source_repository": "qherau/avoptim-benchmark",
+  "source_commit": "73d5fd6e5b63a66fe4268f56a215d844a7516705",
+  "source_directory": "reference/current",
+  "source_hashes": {
+    "README.md": "eefc1c78236b982421559441044428034d81fec3815cc7c0db6468bdf067ec57",
+    "per_sequence.csv": "f259048908c20ca3d2103865881b05898eb2f92508f0849f3c96c88674abf2f2",
+    "KITTI-360_pose.csv": "79042ff219d420327d9f6e79fda76a75018a29ada60132f2676d723a6db8c0e3",
+    "NuScenes_pose.csv": "9b2031997d4b994c183a39f81668e3bc4d72357a730ee654e04e5e954db507fa",
+    "PandaSet_pose.csv": "c679126dc566d21de8a1dcf588aeca57abfa9b2e5a9e93ebc643c9984d5040a6",
+    "Waymo_pose.csv": "abe5aa25ff3f35c3b67e49b9e6213f772fc00640b16d1573a34f6001fb354c2b"
+  },
+  "aggregation": "Arithmetic mean of each metric over the same five slots per dataset. Overall is the arithmetic mean over all twenty slots, using unrounded per_sequence.csv values. No composite score.",
+  "optimized_mode": "Extrinsic calibration + trajectory refinement",
+  "baseline": "Original dataset poses",
+  "metrics": [
+    "nerfacto_psnr_db",
+    "nerfacto_ssim",
+    "nerfacto_lpips",
+    "splatfacto_psnr_db",
+    "splatfacto_ssim",
+    "splatfacto_lpips",
+    "reprojection_px",
+    "track_length",
+    "p2m_vertex_precision_fraction",
+    "surface_distance_m"
+  ],
+  "rows": [
+    {
+      "dataset": "KITTI-360",
+      "method": "Original",
+      "sequences": 5,
+      "metrics": [
+        21.3,
+        0.718,
+        0.278,
+        23.87,
+        0.793,
+        0.178,
+        0.575,
+        6.8,
+        0.77,
+        0.1
+      ]
+    },
+    {
+      "dataset": "KITTI-360",
+      "method": "MOISST++",
+      "sequences": 5,
+      "metrics": [
+        21.41,
+        0.726,
+        0.272,
+        23.91,
+        0.794,
+        0.177,
+        0.58,
+        6.82,
+        0.781,
+        0.085
+      ]
+    },
+    {
+      "dataset": "NuScenes",
+      "method": "Original",
+      "sequences": 5,
+      "metrics": [
+        20.72,
+        0.708,
+        0.531,
+        21.88,
+        0.747,
+        0.404,
+        1.524,
+        6.13,
+        0.456,
+        0.352
+      ]
+    },
+    {
+      "dataset": "NuScenes",
+      "method": "MOISST++",
+      "sequences": 5,
+      "metrics": [
+        22.26,
+        0.794,
+        0.376,
+        26.44,
+        0.859,
+        0.242,
+        0.948,
+        8.54,
+        0.733,
+        0.1
+      ]
+    },
+    {
+      "dataset": "PandaSet",
+      "method": "Original",
+      "sequences": 5,
+      "metrics": [
+        21.91,
+        0.699,
+        0.52,
+        23.54,
+        0.774,
+        0.318,
+        1.164,
+        5.53,
+        0.505,
+        0.311
+      ]
+    },
+    {
+      "dataset": "PandaSet",
+      "method": "MOISST++",
+      "sequences": 5,
+      "metrics": [
+        22.67,
+        0.738,
+        0.453,
+        24.73,
+        0.818,
+        0.278,
+        0.949,
+        5.96,
+        0.54,
+        0.272
+      ]
+    },
+    {
+      "dataset": "Waymo",
+      "method": "Original",
+      "sequences": 5,
+      "metrics": [
+        23.28,
+        0.756,
+        0.493,
+        23.13,
+        0.775,
+        0.432,
+        1.168,
+        5.98,
+        0.467,
+        0.42
+      ]
+    },
+    {
+      "dataset": "Waymo",
+      "method": "MOISST++",
+      "sequences": 5,
+      "metrics": [
+        24.4,
+        0.781,
+        0.447,
+        25.02,
+        0.809,
+        0.367,
+        1.065,
+        6.46,
+        0.695,
+        0.357
+      ]
+    },
+    {
+      "dataset": "Overall",
+      "method": "Original",
+      "sequences": 20,
+      "metrics": [
+        21.802289962768555,
+        0.7203991323709488,
+        0.45537507385015485,
+        23.105760669708253,
+        0.7722669661045074,
+        0.3329875349998474,
+        1.1077661,
+        6.10970425,
+        0.5498052864225168,
+        0.2959327582269907
+      ]
+    },
+    {
+      "dataset": "Overall",
+      "method": "MOISST++",
+      "sequences": 20,
+      "metrics": [
+        22.68612289428711,
+        0.7598574370145798,
+        0.3868135705590248,
+        25.028763103485108,
+        0.8199190974235535,
+        0.2660898007452488,
+        0.8856654,
+        6.9459643,
+        0.6873898219781452,
+        0.20365932397544384
+      ]
+    }
+  ],
+  "metric_columns": [
+    "Nerfacto PSNR",
+    "Nerfacto SSIM",
+    "Nerfacto LPIPS",
+    "Splatfacto PSNR",
+    "Splatfacto SSIM",
+    "Splatfacto LPIPS",
+    "Reproj. Error",
+    "Track length",
+    "P2M Prec.",
+    "P2M average"
+  ],
+  "source_commit_scope": "Recorded reference metric CSVs; README.md is the current documentation snapshot."
+}

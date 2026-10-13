@@ -1,0 +1,54 @@
+{
+  "paper": "https://arxiv.org/abs/2504.15776",
+  "assets": [
+    {
+      "figure": 2,
+      "path": "resources/paper-results/figure-2-pipeline.svg",
+      "source": "https://arxiv.org/html/2504.15776v2/complete_pipeline_v2.svg",
+      "sha256": "53c646c35fd3eac00c3f4768354adcbc894f95b17cae582b142fa71fb712d9ea",
+      "bytes": 405748,
+      "viewBox": "0 0 849 384",
+      "transformed": false
+    },
+    {
+      "path": "resources/paper-results/pandaset-original.jpg",
+      "source": "https://arxiv.org/html/2504.15776v2/ressources/pandaset/qualitative/N_O_005_0296.jpg",
+      "paper_figure": 3,
+      "sha256": "7099818eb686df56759911aaa58e3d257e069783219d8473c9cccb546bc373a3",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 340027,
+      "transformed": false
+    },
+    {
+      "path": "resources/paper-results/pandaset-refined.jpg",
+      "source": "https://arxiv.org/html/2504.15776v2/ressources/pandaset/qualitative/N_M_005_0296.jpg",
+      "paper_figure": 3,
+      "sha256": "73a148c1c260a40f3b7c0f113019885ce889dc6fbe931795abb626d1c26600e6",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 384451,
+      "transformed": false
+    },
+    {
+      "path": "resources/paper-results/nuscenes-original.png",
+      "source": "https://arxiv.org/html/2504.15776v2/ressources/nuScenes/qualitative/3_1174_original.png",
+      "paper_figure": 4,
+      "sha256": "6def3d34c7b3055c7390ce9b72e696af764980ce02e6d8885d15714baed4eb3e",
+      "width": 800,
+      "height": 450,
+      "bytes": 271773,
+      "transformed": false
+    },
+    {
+      "path": "resources/paper-results/nuscenes-refined.png",
+      "source": "https://arxiv.org/html/2504.15776v2/ressources/nuScenes/qualitative/3_1174_moisst.png",
+      "paper_figure": 4,
+      "sha256": "d0b06be7bb5f75d8515b8969905d514b036f2a1b64cccd662a4ded2bfab32132",
+      "width": 800,
+      "height": 450,
+      "bytes": 304615,
+      "transformed": false
+    }
+  ]
+}

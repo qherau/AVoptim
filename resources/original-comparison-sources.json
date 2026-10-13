@@ -1,0 +1,77 @@
+{
+  "source": "Original qherau/AVoptim project website assets",
+  "assets": [
+    {
+      "path": "static/videos/nuscenes_comparison.mp4",
+      "sha256": "6a506b664b19bc2964fcc2943cc93de70a9eefce21fedbcb3dd4829291d782b2",
+      "bytes": 5636167,
+      "transformed": false
+    },
+    {
+      "path": "static/videos/pandaset_comparison.mp4",
+      "sha256": "d55172f4d9942216bbb289ef501ac47c22e90e0c81e93e4b4506cbc43eed632c",
+      "bytes": 6741926,
+      "transformed": false
+    },
+    {
+      "path": "static/videos/waymo_comparison.mp4",
+      "sha256": "3bb39e7bfd3db102c9c84b1cd59b4b076a57724f35ab79d4f59b8cd3c3045a97",
+      "bytes": 5366316,
+      "transformed": false
+    },
+    {
+      "path": "static/videos/kitti_comparison.mp4",
+      "sha256": "9987aea644d8aa0cf27cee9daf9efa159edb47e471f08232f209abf3407a8b81",
+      "bytes": 7401997,
+      "transformed": false
+    },
+    {
+      "path": "static/images/waymo_gt_1.png",
+      "sha256": "83cdc64ba938105d6de2f69a20d49f1bcfdeec0ce8855b992de4ca7c152f31d0",
+      "bytes": 387788,
+      "transformed": false
+    },
+    {
+      "path": "static/images/waymo_moisst_1.png",
+      "sha256": "bc38f354749c277301326a97f70b832f1a7a9dda5fb90057f86a60b27302123f",
+      "bytes": 372750,
+      "transformed": false
+    },
+    {
+      "path": "static/images/pandaset_moisst_2.png",
+      "sha256": "c2583aa578f6c9f78d9b66ce1f6eef317b39d1b5e38499b596b9fb7ee00dc2cf",
+      "bytes": 546578,
+      "transformed": false
+    },
+    {
+      "path": "static/images/pandaset_gt_2.png",
+      "sha256": "a46154c5d0c6a28e866bdf6e579a98f1a11762b346202aa23fabc4bf774e275f",
+      "bytes": 486612,
+      "transformed": false
+    },
+    {
+      "path": "static/images/nuscenes_gt_1.png",
+      "sha256": "7725de371fb268cb239ee43cf50cbdd1412dd2cc015921535e17f6be6c1bbf07",
+      "bytes": 309659,
+      "transformed": false
+    },
+    {
+      "path": "static/images/pandaset_gt_1.png",
+      "sha256": "ac73c02ef3042742d9a94f9cdc0052cacfbd5cec44a09bb9042f230d59a431af",
+      "bytes": 468499,
+      "transformed": false
+    },
+    {
+      "path": "static/images/nuscenes_moisst_1.png",
+      "sha256": "86e3bcb8e52ed0d1625acb47b06a883910c569aa29f67a34afdc6c897c5c34a0",
+      "bytes": 361735,
+      "transformed": false
+    },
+    {
+      "path": "static/images/pandaset_moisst_1.png",
+      "sha256": "8617f140b827a3550aede3802ebf1d06ea4b63b895ffabc0157884af49f31840",
+      "bytes": 495821,
+      "transformed": false
+    }
+  ]
+}

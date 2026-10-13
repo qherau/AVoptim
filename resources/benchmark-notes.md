@@ -1,6 +1,6 @@
 # Pose benchmark leaderboard
 
-Source: avoptim-benchmark/reference/current. The supplied Original and MOISST++ pose sets cover five slots in each of four datasets. MOISST++ refines extrinsic calibration and trajectory. These are recorded results accompanying the supplied poses.
+Source: avoptim-benchmark/reference/current. The benchmark covers five slots in each of four datasets. Original poses and observation metadata are generated locally from authorized raw datasets; the repository supplies only optimized MOISST++ matrices. MOISST++ refines extrinsic calibration and trajectory. These are recorded reference results, not a claim that a fresh run reproduces every paper score.
 
 Dataset means retain the *_pose.csv values. Overall means use all twenty unrounded records per pose set in per_sequence.csv, with equal sequence weights. There is no scalar composite score.
 

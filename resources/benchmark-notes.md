@@ -6,4 +6,6 @@ Dataset means retain the *_pose.csv values. Overall means use all twenty unround
 
 The ten scores are Nerfacto and Splatfacto PSNR (dB, higher), SSIM (higher), LPIPS (lower), mean reprojection error (px, lower), mean track length (higher), P2M vertex precision (fraction, displayed as percent, higher), and mean triangle-surface distance (m, lower). Precision uses a 0.15 m threshold. Nerfacto uses LiDAR depth supervision; Splatfacto uses SfM and LiDAR initialization. Evaluation holds poses fixed.
 
+Waymo camera images retain their recorded lens distortion and are evaluated with a pinhole approximation using the supplied focal lengths and principal point. Original and refined pose sets use the same image convention.
+
 These metrics measure reconstruction consistency rather than independent absolute pose ground truth.
